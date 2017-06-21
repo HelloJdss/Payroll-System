@@ -1,4 +1,5 @@
 ﻿#include "dept.h"
+#include "noeditdelegate.h"
 #include "ui_dept.h"
 #include <QDebug>
 #include <QMessageBox>
@@ -11,13 +12,14 @@ Dept::Dept(QWidget *parent) : QDialog(parent), ui(new Ui::Dept) {
   ui->tableView->horizontalHeader()->setStretchLastSection(true);
   ui->tableView->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
+  ui->tableView->setItemDelegateForColumn(0, new NoEditDelegate(this)); //禁止修改
   connect(ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, this, &Dept::view_sort);
   model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
 void Dept::setDatabaseConnect(QSqlDatabase db) { this->db = db; }
 
-void Dept::fillTable() {
+void Dept::execQuery() {
   model->setTable("dept");
   model->select();
   model->sort(0, Qt::AscendingOrder);
@@ -48,7 +50,7 @@ void Dept::on_pushButton_3_clicked() {
 }
 
 void Dept::on_pushButton_2_clicked() {
-  int ret = QMessageBox::question(0, QStringLiteral("确认?"),
+  int ret = QMessageBox::question(this, QStringLiteral("确认?"),
                                      QStringLiteral("确定撤销修改吗?"),
                                      QMessageBox::Yes, QMessageBox::No);
   if (ret != QMessageBox::Yes)
@@ -58,18 +60,18 @@ void Dept::on_pushButton_2_clicked() {
 
 void Dept::on_pushButton_clicked() {
   // model->database().transaction(); //启动事务
-  int ret = QMessageBox::question(0, QStringLiteral("确认?"),
+  int ret = QMessageBox::question(this, QStringLiteral("确认?"),
                                      QStringLiteral("确定将修改操作同步到数据库吗?"),
                                      QMessageBox::Yes, QMessageBox::No);
   if (ret != QMessageBox::Yes)
     return;
   if (model->submitAll()) {
     // qDebug() << model->database().commit();
-    QMessageBox::information(0, QStringLiteral("提示!"),
+    QMessageBox::information(this, QStringLiteral("提示!"),
                                 QStringLiteral("数据表已更新！"));
   } else {
     //  model->database().rollback();
-    QMessageBox::critical(0, QStringLiteral("错误!"),
+    QMessageBox::critical(this, QStringLiteral("错误!"),
                              QString("Error: %1").arg(model->lastError().text()),
                              QMessageBox::Ok);
   }

@@ -26,7 +26,7 @@ bool ModifyPersonalInformation::setSid(int Sid)
   QSqlQuery q(db);
   q.exec(QString("select Sname,Ssex,Sbirthday,Tel,Email from baseinfo where Sid = '%1'").arg(Sid));
   if(!q.last()){
-      QMessageBox::warning(0,QStringLiteral("警告!"),QStringLiteral("不存在员工信息!"),QMessageBox::Ok);
+      QMessageBox::warning(this,QStringLiteral("警告!"),QStringLiteral("不存在员工信息!"),QMessageBox::Ok);
       return false;
     }
   this->Sid=Sid;
@@ -45,10 +45,10 @@ void ModifyPersonalInformation::saveInfo()
   QSqlQuery q(db);
   bool OK;
   OK = q.exec(QString("update baseinfo set Sname = '%1',"
-                       "                    Ssex = '%2',"
-                       "                    Sbirthday = '%3',"
-                       "                    Tel = '%4',"
-                       "                    Email = '%5' where Sid = '%6'")
+                       "                   Ssex = '%2',"
+                       "                   Sbirthday = '%3',"
+                       "                   Tel = '%4',"
+                       "                   Email = '%5' where Sid = '%6'")
                                            .arg(ui->lineEdit->text())
                                            .arg(ui->radioButton->isChecked()
                                                 ? QString::fromLocal8Bit("男")
@@ -58,8 +58,10 @@ void ModifyPersonalInformation::saveInfo()
                                            .arg(ui->lineEdit_3->text())
                                            .arg(Sid)
                                            );
-  if(OK) QMessageBox::information(0,QStringLiteral("提示!"),QStringLiteral("数据已更新!"));
-  else   QMessageBox::critical(0, QStringLiteral("错误!"),
+  if(OK)
+    QMessageBox::information(this,QStringLiteral("提示!"),QStringLiteral("数据已更新!"));
+  else
+    QMessageBox::critical(this, QStringLiteral("错误!"),
                                   QString("Error: %1").arg(q.lastError().text()),
                                   QMessageBox::Ok
                                   );

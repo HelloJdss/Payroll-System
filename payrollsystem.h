@@ -1,13 +1,20 @@
 ﻿#ifndef PAYROLLSYSTEM_H
 #define PAYROLLSYSTEM_H
 
+#include "addbonus.h"
 #include "addcraftinfo.h"
 #include "addstaffinfo.h"
+#include "addsalary.h"
+#include "annualbonus.h"
+#include "attendance.h"
 #include "privilege.h"
 #include "modifypersonalinformation.h"
+#include "bonus.h"
+#include "baseinfo.h"
 #include "craft.h"
 #include "dept.h"
 #include "login.h"
+#include "salary.h"
 #include <QLabel>
 #include <QMainWindow>
 #include <QSqlDatabase>
@@ -54,6 +61,30 @@ private slots:
   
   void on_action_C_triggered();
 
+  void on_action_M_2_triggered();
+
+  void on_action_M_3_triggered();
+
+  void on_action_S_triggered();
+
+  void on_action_A_4_triggered();
+
+  void on_action_M_4_triggered();
+
+  void on_action_Q_3_triggered();
+
+  void on_action_A_5_triggered();
+
+  void on_action_M_5_triggered();
+
+  void on_action_Q_4_triggered();
+
+  void on_action_E_triggered();
+
+  void on_action_H_triggered();
+
+  void on_action_S_2_triggered();
+
 private:
   Ui::PayrollSystem *ui;
   QSqlDatabase db;
@@ -64,9 +95,11 @@ private:
   void timerupdate();
   bool isCertificated(int require_privilege); //判断当前用户拥有合法权限,传入参数为所需权限等级
 signals:
-  void updateTable();
+  void updateCraftTable();
+  void updateStaffTable();
 public slots:
   void create_Addcraftinfo_Window();
+  void create_Addstaffinfo_Window();
 };
 
 #endif // PAYROLLSYSTEM_H

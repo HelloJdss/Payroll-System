@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/ico">
+        <file>../manager.ico</file>
+        <file>../database.ico</file>
+        <file>../login.ico</file>
+        <file>../logout.ico</file>
+        <file>../pencil.ico</file>
+        <file>../data_configuration.ico</file>
+        <file>../data_encryption.ico</file>
+        <file>../data_recovery.ico</file>
+        <file>../accept_database.ico</file>
+        <file>../add_database.ico</file>
+        <file>../database (1).ico</file>
+        <file>../database (2).ico</file>
+        <file>../database_backup.ico</file>
+        <file>../delete_database.ico</file>
+        <file>../preferences_system_login.ico</file>
+        <file>../Users Edit User.ico</file>
+        <file>../Database Accept.ico</file>
+        <file>../Database Add.ico</file>
+        <file>../Database Backup.ico</file>
+        <file>../Database Configuration.ico</file>
+        <file>../Database Delete.ico</file>
+        <file>../Database Encryption.ico</file>
+        <file>../Database Protection.ico</file>
+        <file>../Database Recovery.ico</file>
+        <file>../Users Group.ico</file>
+        <file>../Users Enter 2.ico</file>
+        <file>../Users Exit.ico</file>
+        <file>../Users Find User.ico</file>
+    </qresource>
+</RCC>

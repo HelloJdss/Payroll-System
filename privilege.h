@@ -15,7 +15,7 @@ class Privilege : public QDialog {
 public:
   explicit Privilege(QWidget *parent = 0);
   void setDatabaseConnect(QSqlDatabase db);
-  void fillTable();
+  void execQuery();
   ~Privilege();
 public slots:
   void view_sort(int column);

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>craft</class>
- <widget class="QDialog" name="craft">
+ <class>Baseinfo</class>
+ <widget class="QDialog" name="Baseinfo">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>648</width>
-    <height>400</height>
+    <width>1100</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>工种信息管理</string>
+   <string>员工信息管理</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icon.qrc">
@@ -71,6 +71,16 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="pushButton_7">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;可以修改员工所属部门信息及工种信息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>更新记录</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButton_2">
            <property name="toolTip">
             <string>查询全表信息</string>
@@ -86,39 +96,13 @@
          <item>
           <widget class="QPushButton" name="pushButton_6">
            <property name="toolTip">
-            <string>可由用户手动输入SQL语句进行查询（注：部门检索应使用部门编号）</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;可由用户手动输入SQL语句进行查询&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="whatsThis">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;可由用户手动输入SQL语句进行查询（注：部门检索应使用部门编号）&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>高级查询</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_7">
-           <property name="toolTip">
-            <string>按照工资升序排列</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按照工资升序排列&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>工资升序</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_8">
-           <property name="toolTip">
-            <string>按照工资降序排列</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按照工资降序排列&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>工资降序</string>
            </property>
           </widget>
          </item>

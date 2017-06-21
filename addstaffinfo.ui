@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>录入员工信息</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icon.qrc">
+    <normaloff>:/ico/Database Add.ico</normaloff>:/ico/Database Add.ico</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -358,7 +362,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>pushButton</sender>

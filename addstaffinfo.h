@@ -15,6 +15,7 @@ class AddStaffInfo : public QDialog {
 public:
   explicit AddStaffInfo(QWidget *parent = 0);
   void setDatabaseConnect(QSqlDatabase db);
+  /* ++ 用于添加员工信息 */
   QString getName();
   QString getSex();
   QString getBirth();
@@ -23,6 +24,9 @@ public:
   QString getHiredate();
   QString getTel();
   QString getEmail();
+  /* ++ 用于修改员工信息 */
+  bool setSid(int Sid);
+  void updateInfo();
   ~AddStaffInfo();
 
 private slots:
@@ -34,8 +38,10 @@ private:
   Ui::addstaffinfo *ui;
   QSqlDatabase db;
   QSqlQueryModel *model;
+  bool isModifyState;
   bool isInitialized;
   QList<int> DidList;
+  int Sid;
   void setCraftDept(); //根据craft表的信息填充comboBox
   void setCraftinfo(int DeptIndex);
 };

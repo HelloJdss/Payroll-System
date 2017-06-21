@@ -1,11 +1,13 @@
 ﻿#include "craft.h"
 #include "ui_craft.h"
+#include "noeditdelegate.h"
 #include <QDebug>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QSqlRelationalDelegate>
+
 craft::craft(QWidget *parent) : QDialog(parent), ui(new Ui::craft) {
   ui->setupUi(this);
   model = new QSqlRelationalTableModel(this);
@@ -15,20 +17,24 @@ craft::craft(QWidget *parent) : QDialog(parent), ui(new Ui::craft) {
   ui->tableView->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
   ui->tableView->setItemDelegate(new QSqlRelationalDelegate(ui->tableView));
+  ui->tableView->setItemDelegateForColumn(0, new NoEditDelegate(this)); //禁止修改
   connect(ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, this, &craft::view_sort);
   ui->comboBox->addItems(QStringList() << QStringLiteral("工种编号")
                                        << QStringLiteral("工种名称")
                                        << QStringLiteral("工种等级")
                                        << QStringLiteral("基本工资")
                                        << QStringLiteral("所属部门"));
+}
+
+void craft::setDatabaseConnect(QSqlDatabase db)
+{
+  this->db = db;
   model->setTable("craft");
   model->setFilter(QString("Cid > 10000"));
   model->setRelation(4, QSqlRelation("Dept", "Did", "Dname"));
   model->select();
   replaceHeader();
 }
-
-void craft::setDatabaseConnect(QSqlDatabase db) { this->db = db; }
 
 craft::~craft() { delete ui; }
 
@@ -97,7 +103,7 @@ void craft::on_pushButton_clicked() //条件查询
   case 4:
     query.exec(QString("select Did from Dept where Dname like '%1'").arg("%" + t + "%"));
     query.last();
-    model->setFilter(QString("Cdept = '%1' and Cid>10000").arg(query.record().value(0).toInt()));
+    model->setFilter(QString("Cdept = '%1' and Cid > 10000").arg(query.record().value(0).toInt()));
     break;
   default:
     break;
@@ -122,18 +128,18 @@ void craft::on_pushButton_6_clicked() //高级查询
 void craft::on_pushButton_4_clicked() //提交修改
 {
   // model->database().transaction(); //启动事务
-  int ret = QMessageBox::question(0, QStringLiteral("确认?"),
+  int ret = QMessageBox::question(this, QStringLiteral("确认?"),
                                      QStringLiteral("确定将修改操作同步到数据库吗?"),
                                      QMessageBox::Yes, QMessageBox::No);
   if (ret != QMessageBox::Yes)
     return;
   if (model->submitAll()) {
     // qDebug() << model->database().commit();
-    QMessageBox::information(0, QStringLiteral("提示!"),
+    QMessageBox::information(this, QStringLiteral("提示!"),
                              QStringLiteral("数据表已更新！"));
   } else {
     //  model->database().rollback();
-    QMessageBox::critical(0, QStringLiteral("错误!"),
+    QMessageBox::critical(this, QStringLiteral("错误!"),
                           QString("Error: %1").arg(model->lastError().text()),
                           QMessageBox::Ok);
   }
@@ -141,7 +147,7 @@ void craft::on_pushButton_4_clicked() //提交修改
 
 void craft::on_pushButton_5_clicked() //撤销修改
 {
-  int ret = QMessageBox::question(0, QStringLiteral("确认?"),
+  int ret = QMessageBox::question(this, QStringLiteral("确认?"),
                                   QStringLiteral("确定撤销修改吗?"),
                                   QMessageBox::Yes, QMessageBox::No);
   if (ret != QMessageBox::Yes)

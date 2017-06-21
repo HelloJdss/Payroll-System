@@ -1,5 +1,6 @@
 ﻿#include "privilege.h"
 #include "ui_privilege.h"
+#include "noeditdelegate.h"
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QInputDialog>
@@ -13,6 +14,8 @@ Privilege::Privilege(QWidget *parent) : QDialog(parent), ui(new Ui::Privilege) {
   ui->tableView->horizontalHeader()->setStretchLastSection(true);
   ui->tableView->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
+  ui->tableView->setItemDelegateForColumn(0, new NoEditDelegate(this)); //禁止修改
+  ui->tableView->setItemDelegateForColumn(1, new NoEditDelegate(this)); //禁止修改
   connect(ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, this, &Privilege::view_sort);
   model->setEditStrategy(QSqlTableModel::OnManualSubmit);
   ui->splitter->setStretchFactor(0,1);
@@ -20,7 +23,7 @@ Privilege::Privilege(QWidget *parent) : QDialog(parent), ui(new Ui::Privilege) {
 
 void Privilege::setDatabaseConnect(QSqlDatabase db) { this->db = db; }
 
-void Privilege::fillTable() {
+void Privilege::execQuery() {
   model->setTable("users");
   model->select();
   model->sort(0, Qt::AscendingOrder);
@@ -60,16 +63,16 @@ void Privilege::on_comboBox_currentIndexChanged(const QString &arg1) {
 
 void Privilege::on_pushButton_3_clicked() {
   bool OK;
-  QString pswd = QInputDialog::getText(0,
+  QString pswd = QInputDialog::getText(this,
                                        QStringLiteral("修改密码"),
                                        QStringLiteral("请输入新密码："),
                                        QLineEdit::PasswordEchoOnEdit, QString(), &OK);
   if (!OK) return;
-  if (pswd != QInputDialog::getText(0,
+  if (pswd != QInputDialog::getText(this,
                                     QStringLiteral("修改密码"),
                                     QStringLiteral("请确认新密码："),
                                     QLineEdit::Password, QString(), &OK)) {
-    QMessageBox::critical(0, QStringLiteral("错误!"), QStringLiteral("密码输入不一致！"), QMessageBox::Ok);
+    QMessageBox::critical(this, QStringLiteral("错误!"), QStringLiteral("密码输入不一致！"), QMessageBox::Ok);
     return;
   }
   if (!OK) return;
@@ -77,9 +80,9 @@ void Privilege::on_pushButton_3_clicked() {
   if (q.exec(QString("set password for '%1'@'localhost' =  '%2'")
                  .arg(ui->comboBox->currentText())
                  .arg(pswd)))
-    QMessageBox::information(0, QStringLiteral("提示!"), QStringLiteral("密码已成功修改!"));
+    QMessageBox::information(this, QStringLiteral("提示!"), QStringLiteral("密码已成功修改!"));
   else
-    QMessageBox::critical(0, QStringLiteral("错误!"),
+    QMessageBox::critical(this, QStringLiteral("错误!"),
                              QString("Error: %1").arg(q.lastError().text()),
                              QMessageBox::Ok);
 }
@@ -87,18 +90,18 @@ void Privilege::on_pushButton_3_clicked() {
 void Privilege::on_pushButton_clicked()
 {
   int ret =
-      QMessageBox::question(0, QStringLiteral("确认?"),
+      QMessageBox::question(this, QStringLiteral("确认?"),
                                QStringLiteral("确定将修改操作同步到数据库吗?"),
                                QMessageBox::Yes, QMessageBox::No);
   if (ret != QMessageBox::Yes)
     return;
   if (model->submitAll()) {
     // qDebug() << model->database().commit();
-    QMessageBox::information(0, QStringLiteral("提示!"),
+    QMessageBox::information(this, QStringLiteral("提示!"),
                                 QStringLiteral("数据表已更新！"));
   } else {
     //  model->database().rollback();
-    QMessageBox::critical(0, QStringLiteral("错误!"),
+    QMessageBox::critical(this, QStringLiteral("错误!"),
                              QString("Error: %1").arg(model->lastError().text()),
                              QMessageBox::Ok);
   }
@@ -106,7 +109,7 @@ void Privilege::on_pushButton_clicked()
 
 void Privilege::on_pushButton_2_clicked()
 {
-  int ret = QMessageBox::question(0, QStringLiteral("确认?"),
+  int ret = QMessageBox::question(this, QStringLiteral("确认?"),
                                      QStringLiteral("确定撤销修改吗?"),
                                      QMessageBox::Yes, QMessageBox::No);
   if (ret != QMessageBox::Yes)

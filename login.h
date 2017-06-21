@@ -12,6 +12,8 @@ class Login : public QDialog {
 
 public:
   explicit Login(QWidget *parent = 0);
+  void setLoginMode();
+  void setSettingMode();
   void clearPswd();
   ~Login();
   QString dbname;
@@ -24,6 +26,7 @@ private slots:
   void on_pushButton_clicked();
 
 private:
+  bool isSettingMode;
   Ui::Login *ui;
 };
 

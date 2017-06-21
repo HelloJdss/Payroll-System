@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,7 +20,16 @@ SOURCES += main.cpp\
     addstaffinfo.cpp \
     dept.cpp \
     privilege.cpp \
-    modifypersonalinformation.cpp
+    modifypersonalinformation.cpp \
+    baseinfo.cpp \
+    noeditdelegate.cpp \
+    comboboxdelegate.cpp \
+    attendance.cpp \
+    addbonus.cpp \
+    bonus.cpp \
+    addsalary.cpp \
+    salary.cpp \
+    annualbonus.cpp
 
 HEADERS  += payrollsystem.h \
     login.h \
@@ -29,7 +38,16 @@ HEADERS  += payrollsystem.h \
     addstaffinfo.h \
     dept.h \
     privilege.h \
-    modifypersonalinformation.h
+    modifypersonalinformation.h \
+    baseinfo.h \
+    noeditdelegate.h \
+    comboboxdelegate.h \
+    attendance.h \
+    addbonus.h \
+    bonus.h \
+    addsalary.h \
+    salary.h \
+    annualbonus.h
 
 FORMS    += payrollsystem.ui \
     login.ui \
@@ -38,4 +56,16 @@ FORMS    += payrollsystem.ui \
     addstaffinfo.ui \
     dept.ui \
     privilege.ui \
-    modifypersonalinformation.ui
+    modifypersonalinformation.ui \
+    baseinfo.ui \
+    attendance.ui \
+    addbonus.ui \
+    bonus.ui \
+    addsalary.ui \
+    salary.ui \
+    annualbonus.ui
+
+RESOURCES += \
+    icon.qrc
+
+RC_FILE = icon.rc

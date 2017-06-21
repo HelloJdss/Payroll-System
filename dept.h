@@ -15,7 +15,7 @@ class Dept : public QDialog {
 public:
   explicit Dept(QWidget *parent = 0);
   void setDatabaseConnect(QSqlDatabase db);
-  void fillTable();
+  void execQuery();
   ~Dept();
 public slots:
   void view_sort(int column);

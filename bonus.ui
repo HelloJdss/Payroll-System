@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>craft</class>
- <widget class="QDialog" name="craft">
+ <class>bonus</class>
+ <widget class="QDialog" name="bonus">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>工种信息管理</string>
+   <string>津贴管理</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icon.qrc">
@@ -86,39 +86,13 @@
          <item>
           <widget class="QPushButton" name="pushButton_6">
            <property name="toolTip">
-            <string>可由用户手动输入SQL语句进行查询（注：部门检索应使用部门编号）</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;可由用户手动输入SQL语句进行查询&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="whatsThis">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;可由用户手动输入SQL语句进行查询（注：部门检索应使用部门编号）&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>高级查询</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_7">
-           <property name="toolTip">
-            <string>按照工资升序排列</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按照工资升序排列&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>工资升序</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_8">
-           <property name="toolTip">
-            <string>按照工资降序排列</string>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按照工资降序排列&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>工资降序</string>
            </property>
           </widget>
          </item>
@@ -153,41 +127,52 @@
       </layout>
      </item>
      <item row="2" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,1,0">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,1,0,1,0">
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>条件检索：</string>
+          <string>日期检索：</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
-         <property name="toolTip">
-          <string>选择检索条件</string>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>从</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="clearButtonEnabled">
+        <widget class="QDateEdit" name="dateEdit">
+         <property name="displayFormat">
+          <string>yyyy/MM/dd</string>
+         </property>
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>至</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDateEdit" name="dateEdit_2">
+         <property name="displayFormat">
+          <string>yyyy/MM/dd</string>
+         </property>
+         <property name="calendarPopup">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton">
-         <property name="toolTip">
-          <string>按照条件进行精确检索</string>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按照条件进行精确检索&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
          <property name="text">
-          <string>条件查询</string>
-         </property>
-         <property name="default">
-          <bool>true</bool>
+          <string>提交查询</string>
          </property>
         </widget>
        </item>

@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>450</height>
+    <width>800</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>PayrollSystem</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icon.qrc">
+    <normaloff>:/ico/Users Group.ico</normaloff>:/ico/Users Group.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -38,9 +42,14 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>750</width>
-     <height>20</height>
+     <width>800</width>
+     <height>17</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>宋体</family>
+    </font>
    </property>
    <widget class="QMenu" name="menu_U">
     <property name="title">
@@ -65,6 +74,8 @@
     <property name="title">
      <string>菜单(&amp;M)</string>
     </property>
+    <addaction name="action_S_2"/>
+    <addaction name="separator"/>
     <addaction name="action_Q"/>
    </widget>
    <widget class="QMenu" name="menu_S">
@@ -72,95 +83,335 @@
      <string>员工(&amp;S)</string>
     </property>
     <addaction name="action_A_2"/>
+    <addaction name="action_M_2"/>
     <addaction name="separator"/>
     <addaction name="action_C"/>
    </widget>
    <widget class="QMenu" name="menu_A">
     <property name="title">
-     <string>部门(&amp;A)</string>
+     <string>部门(&amp;D)</string>
     </property>
     <addaction name="action_A_3"/>
     <addaction name="action_L_2"/>
     <addaction name="separator"/>
     <addaction name="action_D"/>
    </widget>
+   <widget class="QMenu" name="menu_A_2">
+    <property name="title">
+     <string>考勤(&amp;A)</string>
+    </property>
+    <addaction name="action_S"/>
+    <addaction name="separator"/>
+    <addaction name="action_M_3"/>
+   </widget>
+   <widget class="QMenu" name="menu_B">
+    <property name="title">
+     <string>津贴(&amp;B)</string>
+    </property>
+    <addaction name="action_A_4"/>
+    <addaction name="action_M_4"/>
+    <addaction name="separator"/>
+    <addaction name="action_Q_3"/>
+   </widget>
+   <widget class="QMenu" name="menu_W">
+    <property name="title">
+     <string>工资(&amp;W)</string>
+    </property>
+    <addaction name="action_A_5"/>
+    <addaction name="action_M_5"/>
+    <addaction name="separator"/>
+    <addaction name="action_E"/>
+    <addaction name="action_Q_4"/>
+   </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>关于(&amp;H)</string>
+    </property>
+    <addaction name="action_H"/>
+   </widget>
    <addaction name="menu_M"/>
    <addaction name="menu_U"/>
    <addaction name="menu_A"/>
    <addaction name="menu_I"/>
    <addaction name="menu_S"/>
+   <addaction name="menu_A_2"/>
+   <addaction name="menu_B"/>
+   <addaction name="menu_W"/>
+   <addaction name="menu_H"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextBesideIcon</enum>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_L"/>
+   <addaction name="action_Q_2"/>
+   <addaction name="action_P"/>
+   <addaction name="action_C"/>
+   <addaction name="action_Q_3"/>
+   <addaction name="action_Q_4"/>
+   <addaction name="action_E"/>
+   <addaction name="action_S"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="font">
+    <font>
+     <family>宋体</family>
+    </font>
+   </property>
+  </widget>
   <action name="action_L">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Users Enter 2.ico</normaloff>:/ico/Users Enter 2.ico</iconset>
+   </property>
    <property name="text">
     <string>登录(&amp;L)</string>
    </property>
+   <property name="iconText">
+    <string>登录</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="action_I">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Configuration.ico</normaloff>:/ico/Database Configuration.ico</iconset>
+   </property>
    <property name="text">
-    <string>工种查询管理(&amp;I)</string>
+    <string>工种信息管理(&amp;I)</string>
    </property>
   </action>
   <action name="action_A">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Add.ico</normaloff>:/ico/Database Add.ico</iconset>
+   </property>
    <property name="text">
     <string>添加工种信息(&amp;A)</string>
    </property>
   </action>
   <action name="action_Q">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/logout.ico</normaloff>:/ico/logout.ico</iconset>
+   </property>
    <property name="text">
     <string>退出(&amp;Q)</string>
    </property>
   </action>
   <action name="action_A_2">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Add.ico</normaloff>:/ico/Database Add.ico</iconset>
+   </property>
    <property name="text">
     <string>添加员工信息(&amp;A)</string>
    </property>
   </action>
   <action name="action_A_3">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Add.ico</normaloff>:/ico/Database Add.ico</iconset>
+   </property>
    <property name="text">
     <string>添加部门(&amp;A)</string>
    </property>
   </action>
   <action name="action_D">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Delete.ico</normaloff>:/ico/Database Delete.ico</iconset>
+   </property>
    <property name="text">
     <string>解散部门(&amp;D)</string>
    </property>
   </action>
   <action name="action_L_2">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Configuration.ico</normaloff>:/ico/Database Configuration.ico</iconset>
+   </property>
    <property name="text">
     <string>查看部门(&amp;L)</string>
    </property>
   </action>
   <action name="action_Q_2">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Users Exit.ico</normaloff>:/ico/Users Exit.ico</iconset>
+   </property>
    <property name="text">
     <string>注销(&amp;Q)</string>
    </property>
+   <property name="iconText">
+    <string>注销</string>
+   </property>
   </action>
   <action name="action_M">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Protection.ico</normaloff>:/ico/Database Protection.ico</iconset>
+   </property>
    <property name="text">
     <string>高级权限(&amp;M)</string>
    </property>
   </action>
   <action name="action_P">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Encryption.ico</normaloff>:/ico/Database Encryption.ico</iconset>
+   </property>
    <property name="text">
     <string>修改密码(&amp;P)</string>
    </property>
+   <property name="iconText">
+    <string>修改密码</string>
+   </property>
   </action>
   <action name="action_C">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Users Edit User.ico</normaloff>:/ico/Users Edit User.ico</iconset>
+   </property>
    <property name="text">
     <string>修改个人信息(&amp;C)</string>
+   </property>
+   <property name="iconText">
+    <string>编辑个人信息</string>
+   </property>
+  </action>
+  <action name="action_M_2">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Configuration.ico</normaloff>:/ico/Database Configuration.ico</iconset>
+   </property>
+   <property name="text">
+    <string>员工信息管理(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action_M_3">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Configuration.ico</normaloff>:/ico/Database Configuration.ico</iconset>
+   </property>
+   <property name="text">
+    <string>考勤管理(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action_S">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/pencil.ico</normaloff>:/ico/pencil.ico</iconset>
+   </property>
+   <property name="text">
+    <string>员工签到(&amp;S)</string>
+   </property>
+   <property name="iconText">
+    <string>签到</string>
+   </property>
+  </action>
+  <action name="action_A_4">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Add.ico</normaloff>:/ico/Database Add.ico</iconset>
+   </property>
+   <property name="text">
+    <string>发放津贴(&amp;A)</string>
+   </property>
+  </action>
+  <action name="action_M_4">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Configuration.ico</normaloff>:/ico/Database Configuration.ico</iconset>
+   </property>
+   <property name="text">
+    <string>津贴管理(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action_Q_3">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Users Find User.ico</normaloff>:/ico/Users Find User.ico</iconset>
+   </property>
+   <property name="text">
+    <string>个人津贴查询(&amp;Q)</string>
+   </property>
+   <property name="iconText">
+    <string>津贴查询</string>
+   </property>
+  </action>
+  <action name="action_A_5">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Add.ico</normaloff>:/ico/Database Add.ico</iconset>
+   </property>
+   <property name="text">
+    <string>录入月工资(&amp;A)</string>
+   </property>
+  </action>
+  <action name="action_M_5">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Configuration.ico</normaloff>:/ico/Database Configuration.ico</iconset>
+   </property>
+   <property name="text">
+    <string>月工资管理(&amp;M)</string>
+   </property>
+  </action>
+  <action name="action_Q_4">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Users Find User.ico</normaloff>:/ico/Users Find User.ico</iconset>
+   </property>
+   <property name="text">
+    <string>个人月工资查询(&amp;Q)</string>
+   </property>
+   <property name="iconText">
+    <string>月工资查询</string>
+   </property>
+  </action>
+  <action name="action_E">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Users Find User.ico</normaloff>:/ico/Users Find User.ico</iconset>
+   </property>
+   <property name="text">
+    <string>年终奖查询(&amp;E)</string>
+   </property>
+   <property name="iconText">
+    <string>年终奖查询</string>
+   </property>
+  </action>
+  <action name="action_H">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Protection.ico</normaloff>:/ico/Database Protection.ico</iconset>
+   </property>
+   <property name="text">
+    <string>帮助(&amp;H)</string>
+   </property>
+  </action>
+  <action name="action_S_2">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/ico/Database Configuration.ico</normaloff>:/ico/Database Configuration.ico</iconset>
+   </property>
+   <property name="text">
+    <string>数据库设置(&amp;S)</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
  <connections/>
 </ui>
